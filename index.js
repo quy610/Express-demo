@@ -15,7 +15,7 @@ app.set('views', './views');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('asdadasdasa12312'));
 
 app.use(express.static('public'));
 

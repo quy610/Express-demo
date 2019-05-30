@@ -9,7 +9,6 @@ var authMiddleware = require('../middlewares/auth.middleware');
 router.get('/', controller.index);
 
 router.get('/cookie', function(req, res, next) {
-	res.cookie('user-id', 12345);
 	res.send('Hello');
 });
 

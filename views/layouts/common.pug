@@ -15,6 +15,9 @@ html
 						a.nav-link(href='/users') Users
 					li.nav-item.active
 						a.nav-link(href='/users/create') Create User
+			if user
+				p= user.name
+
 		.container.pt-5
 			block content
 
