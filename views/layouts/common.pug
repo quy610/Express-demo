@@ -1,0 +1,22 @@
+html
+	head
+		link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
+	body
+		nav.navbar.navbar-expand-lg.navbar-light.bg-light
+			a.navbar-brand(href='/')
+				img.d-inline-block.align-top(src='/image/logo.png', width='30', height='30', alt='') 
+				span Coder Tokyo
+			#navbarNav.collapse.navbar-collapse
+				ul.navbar-nav
+					li.nav-item.active
+						a.nav-link(href='/') Home
+							span.sr-only (current)
+					li.nav-item.active
+						a.nav-link(href='/users') Users
+					li.nav-item.active
+						a.nav-link(href='/users/create') Create User
+		.container.pt-5
+			block content
+
+		footer.page-footer.font-small.blue.footer-copyright.text-center.py-3| &copy; 2018 Copyright:
+			a(href='/')  Coder Tokyo
