@@ -28,3 +28,26 @@ module.exports.index = function(req, res) {
 		page: page
 	});
 };
+
+module.exports.search = function(req, res) {
+	var page =  parseInt(req.query.page) || 1;
+	var q = req.query.q;
+	var matchedProd = db.get('products').value().filter(function(product) {
+		return product.name.toLowerCase().indexOf(q.toLowerCase()) !== -1;
+	});
+
+	// var perPage = 8;
+	// var totalPage = 0;
+
+	// if(!matchedProd.length % perPage) {
+	// 	totalPage = matchedProd.length / perPage;
+	// } else {
+	// 	totalPage = parseInt(matchedProd.length / perPage) + 1;
+	// }
+
+	res.render('product/index', {
+		products: matchedProd,
+		total: 0,
+		page: 0
+	})
+}

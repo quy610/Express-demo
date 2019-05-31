@@ -6,6 +6,9 @@ var controller = require('../controllers/user.controller');
 
 var authMiddleware = require('../middlewares/auth.middleware');
 
+var multer = require('multer');
+var upload = multer({ dest: './public/uploads/' });
+
 router.get('/', controller.index);
 
 router.get('/cookie', function(req, res, next) {
@@ -18,6 +21,10 @@ router.get('/create', controller.create);
 
 router.get('/:id', controller.get);
 
-router.post('/create', validate.postCreate, controller.postCreate);
+router.post('/create', 
+	upload.single('avatar'), 
+	validate.postCreate, 
+	controller.postCreate
+);
 
 module.exports = router;
