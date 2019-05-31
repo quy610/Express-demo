@@ -8,8 +8,11 @@ var cookieParser = require('cookie-parser');
 var userRoute = require('./routes/user.route');
 var authRoute = require('./routes/auth.route');
 var productRoute = require('./routes/product.route');
+var cartRoute = require('./routes/cart.route');
 
 var authMiddleware = require('./middlewares/auth.middleware');
+var sessionMiddleware = require('./middlewares/session.middleware');
+var cartMiddleware = require('./middlewares/cart.middleware');
 
 var app = express();
 var port = 3000;
@@ -20,6 +23,7 @@ app.set('views', './views');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.SESSION_SECRET));
+app.use(sessionMiddleware);
 
 app.use(express.static('public'));
 
@@ -31,7 +35,8 @@ app.get('/', function(req, res) {
 
 app.use('/users', authMiddleware.requireAuth, userRoute);
 app.use('/auth', authRoute);
-app.use('/product', productRoute);
+app.use('/product', cartMiddleware, productRoute);
+app.use('/cart', cartRoute);
 
 app.listen(port, function() {
 	console.log('Server is running in port ' + port);
