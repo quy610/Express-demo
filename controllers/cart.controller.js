@@ -22,16 +22,3 @@ module.exports.addToCart = function(req, res, next) {
 
 	res.redirect('/product');
 }
-
-module.exports.countProd = function(req, res, next) {
-	var sessionId = req.signedCookies.sessionId;
-	var matchedSession = db.get('sessions').find({ id : sessionId}).value();
-	var newArr = matchedSession.cart;
-    var sum = 0;
-    for(var key in newArr) {
-      sum+= newArr[key];
-    }
-
-    res.locals.sum = sum;
-    
-}
